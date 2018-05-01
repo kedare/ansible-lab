@@ -1,0 +1,63 @@
+---
+# Bad ansible! This playbook is an example of poor/bad practices!
+# Bad practices may include:
+#
+#   Poor formatting and structure
+#   Poor use of YAML - but good enough to parse
+#   Inconsistent style
+#   Incorrect use of modules
+#   Poor module choice
+#   Unclear names
+#   Hard coding / poor use of variables
+#   Roles - what are roles?
+#   Bare variables
+#   No use of handlers
+
+- name: Deploy repository
+  hosts: all
+  gather_facts: false # remove later! speeds up testing
+  become: true
+
+  tasks:
+    - name: "Run Global Playbook"
+      include_role:
+        name: global
+
+- name: Deploy HAProxy
+  hosts: frontends
+  gather_facts: false
+  become: true
+
+  tasks:
+    - name: Deploy HAProxy role
+      include_role:
+        name: haproxy
+
+
+- name: Deploy Tomcat
+  hosts: apps
+  gather_facts: false
+  become: true
+
+  tasks:
+  - name: Deploy Tomcat role
+    include_role:
+      name: tomcat
+
+- name: Deploy PostgreSQL
+  gather_facts: false
+  become: true
+  hosts: appdbs
+  tasks:
+    - name: Deploy PostgreSQL role
+      include_role:
+        name: postgresql
+
+- name: deploy apache
+  hosts: apps
+  gather_facts: false
+  become: true
+  tasks:
+    - name: Deploy Apache role
+      include_role:
+        name: apache

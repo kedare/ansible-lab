@@ -1,0 +1,19 @@
+- name: install progres
+  package:
+    name: postgresql-server
+
+- name: Get PostgreSQL deployment status
+  stat:
+    path: /var/lib/pgsql/data/postgresql.conf
+  register: postgresql_conf
+
+- name: Initialize database
+  command: postgresql-setup initdb
+  when: postgresql_conf.stat.exists == False
+
+- name: start postgres and enable at boot
+  service:
+    name: postgresql
+    state: started
+    enabled: true
+

@@ -1,0 +1,12 @@
+- name: install apache
+  package:
+    name: httpd
+    state: latest
+
+- name: start at boot and now
+  service:
+    name: httpd
+    enabled: yes
+    state: started
+
+
