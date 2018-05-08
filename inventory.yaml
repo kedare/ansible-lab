@@ -18,24 +18,24 @@ all:
 
 frontends:
   hosts:
-    frontend1.{{ guid }}.internal:
+    frontend1.internal:
       ansible_ssh_host: frontend.{{ guid }}.example.opentlc.com
 
 apps:
   hosts:
-    app1.{{ guid }}.internal:
+    app1.internal:
       ansible_ssh_host: app1.{{ guid }}.example.opentlc.com
-    app2.{{ guid }}.internal:
+    app2.internal:
       ansible_ssh_host: app2.{{ guid }}.example.opentlc.com
 
 appdbs:
   hosts:
-    appdb1.{{ guid }}.internal:
+    appdb1.internal:
       ansible_ssh_host: appdb1.{{ guid }}.example.opentlc.com
 
 support:
   hosts:
-    support1.{{ guid }}.internal:
+    support1.internal:
       ansible_ssh_host: support1.{{ guid }}.example.opentlc.com
 
 
